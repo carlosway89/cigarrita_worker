@@ -1,0 +1,71 @@
+.center{
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*BOOSTRAP RANGES*/
+/*Large devices Desktops (≥1200px)*/
+/*Medium devices Desktops (≥992px) 	*/
+/*Small devices Tablets (≥768px) 	*/
+/*Extra small devices Phones (<768px) 	*/
+
+
+@media (max-width: 767px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+}
+@media (min-width: 1200px) {
+}
+
+
+
+
+/*SEMANTIC UI RANGES*/
+/*Widescreen Monitor 	Above 1920px*/
+/*Large Monitor 	Above 1400px 	*/
+/*Computer 	Above 992px 	*/
+/*Tablet 	Above 768px and below 992px */
+/*Below 768px 	*/
+
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media only screen and (min-width: 992px) {
+
+}
+@media only screen and (min-width: 1400px) {
+
+}
+
+@media only screen and (min-width: 1920px) {
+
+}
+
+
+
+	
+
+
