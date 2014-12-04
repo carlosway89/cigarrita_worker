@@ -1,49 +1,80 @@
-// Filename: router.js
  define([
      'beans',
-     'views/home',
-     'views/bien',
-     'models/parse',
      'channel'
      ], function(
         Beans,
-        Home,
-        ParseModel,
         Channel
      ){
         var AppRouter = Backbone.Router.extend({
             beans: new Beans,
             debug: true,
             routes: {
-                'home': 'home',   // default page reload to home
+                '{{table}}': '{{table}}',
+                '{{table}}_new': '{{table}}_new',
+                '{{table}}/:id': '{{table}}_edit',
+                'home':'home'
             },
-
-
             home: function(){
-
                 /**
                  * Send a clear-last-view event to Channel, so that any view can clean
                  * up after itself
                  */
-            
-                    var view = new Home({
+                require(['views/home'],function(home){
+                    var view = new home({
                         el: $('div.view-container')
                     });
 
-                    
+                    view.render();
+                });           
+            }
+            table_edit: function(id){
+                /**
+                 * Send a clear-last-view event to Channel, so that any view can clean
+                 * up after itself
+                 */
+                require(['views/table-edit-form'],function(table){
+                    var view = new table({
+                        el: $('div.view-container'),
+                        id:id
+                    });
+
+                    // view.render();
+                });                           
             },
+            table_new: function(){
+                /**
+                 * Send a clear-last-view event to Channel, so that any view can clean
+                 * up after itself
+                 */
+                require(['views/table-new-form'],function(table){
+                    var view = new table({
+                        el: $('div.view-container'),
+                    });
 
+                    view.render();
+                });                           
+            },
+            table: function(){
+                /**
+                 * Send a clear-last-view event to Channel, so that any view can clean
+                 * up after itself
+                 */
+                require(['views/table'],function(table){
+                    var view = new table({
+                        el: $('div.view-container')
+                    });
 
+                    view.render();
+                });           
+            }
         });
         var initialize = function(){
-
                 /**
                  * Now that we've loaded both APIs, we can proceed to begin routing...
                  */
                 var app_router = new AppRouter;
                 
                 app_router.on('route:defaultAction', function(actions){
-
                     /**
                      * We don't know this view, so show a 404
                      */
@@ -55,17 +86,13 @@
                         new FourOhFour({
                             el: $div
                         });
-
                     });
-
                 });
-
                 /**
                  * Set default route
                  */
-                if ( ! window.location.hash.length ) window.location.hash = '#home';
+                if ( ! window.location.hash.length ) window.location.hash = '#{{table}}';
                 Backbone.history.start();
-
      };
  return {
      initialize: initialize

@@ -28,13 +28,82 @@ class generator_model{
 
   	}
 
+
+  	public function copy_skin($app,$type){
+  		// $ui="../skin/$type";
+  		$css='../skin/css';
+  		$fonts='../skin/fonts';
+  		$images='../skin/images';
+  		$js='../skin/js';
+
+  		$view='../skin/js/views';
+  		$collection='../skin/js/collections';
+  		$model='../skin/js/models';
+
+  		$templates='../skin/templates';
+
+		//create css
+  		mkdir("../../$app/css", 0777);
+  		$message=$this->full_copy($css, "../../$app/css");
+  		//create font
+  		mkdir("../../$app/fonts", 0777);
+  		$message=$this->full_copy($fonts, "../../$app/fonts");
+  		//create images
+  		mkdir("../../$app/images", 0777);
+  		$message=$this->full_copy($images, "../../$app/images");
+  		//create templates
+  		mkdir("../../$app/templates", 0777);
+  		$message=$this->full_copy($templates, "../../$app/templates");
+
+  		//create JS
+  		mkdir("../../$app/js", 0777);
+  		mkdir("../../$app/js/views", 0777);
+  		mkdir("../../$app/js/collections", 0777);
+  		mkdir("../../$app/js/models", 0777);
+
+  		$message=$this->full_copy($view, "../../$app/js/views");
+  		$message=$this->full_copy($collection, "../../$app/js/collections");
+  		$message=$this->full_copy($model, "../../$app/js/models");
+  		$message=$this->full_copy($js, "../../$app/js");  	
+
+
+  	}
+
+  	function full_copy( $source, $target ) {
+	    if ( is_dir( $source ) ) {
+	        @mkdir( $target );
+	        $d = dir( $source );
+	        while ( FALSE !== ( $entry = $d->read() ) ) {
+	            if ( $entry == '.' || $entry == '..' ) {
+	                continue;
+	            }
+	            $Entry = $source . '/' . $entry; 
+	            if ( is_dir( $Entry ) ) {
+	                // full_copy( $Entry, $target . '/' . $entry );
+	                continue;
+	            }
+	            if (!copy( $Entry, $target . '/' . $entry )) {
+	            	return 'no se pudo copiar';
+	            }
+	        }
+	 
+	        $d->close();
+	    }else {
+	    	if (!copy( $source, $target )) {
+	    		return 'no se pudo copiar';
+	    	}
+	    }
+	}
+
+
+
   	public function model($table){
 
   		$model="define([],function () {
 	        return Backbone.Model.extend({
 	            defaults: {
 	            },
-	            urlRoot: 'api/index/".$table."',
+	            urlRoot: '/api/v1/".$table."',
 	            initialize: function () {
 	            }
 	        });
@@ -47,7 +116,7 @@ class generator_model{
   		$collection="define(['models/".$table."'],function (Model) {
   				    return Backbone.Collection.extend({
   				        url: function(){
-  				            return 'api/index/".$table."';
+  				            return '/api/v1/".$table."';
   				        },
   				        limit: 0,
   				        model: Model,
@@ -522,7 +591,8 @@ class generator_model{
 		
 		$items=$this->database_table($table);
 
-
+		$this->copy_skin($app,"boostrap");
+		
 		$model_content=$this->model_item_js($items,$table);
 		$file=$this->creator($table,'view-item-js',$app);
 		fputs($file, $model_content);
@@ -565,6 +635,8 @@ class generator_model{
 		fputs($file, $model_content);
 
 		fclose($file);
+
+		
 
 		echo $this->message;
 	}

@@ -116,7 +116,7 @@
 
     	setTimeout(function(){
     		$('input.typeahead').typeahead({
-			        name: 'pruebasaab',
+			        name: 'locosporcali',
 			        prefetch: 'generator/tables.php',
 			        limit: 10,
 			        ttl_ms: 1 
@@ -223,6 +223,7 @@
 							<div id="panel-generate" class="panel-body">
 								<ul id="already" class="unstyled"></ul>
 								<div id="files">
+									<p>Para Comenzar solo tienes que configurar el archivo "config.php" con los parametros requeridos de tu DataBase y Listo!!</p>
 									<p>Se Generará los Archivos Necesarios para poder listar utilizando boostrap, datatbleJS integrado con BackboneJS,HandleBar y usando la API de tu Agrado</p>
 									<ul class="list-unstyled">
 										<li><i class="glyphicon glyphicon-ok text-success"></i> views/{{tabla}}.js</li>
