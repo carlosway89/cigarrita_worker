@@ -1,5 +1,5 @@
 define([
-    'text!/prueba_yii/templates/preloader.php',
+    'text!/templates/preloader.php',
     'beans',
     'models/parse',
     'collections/parse',

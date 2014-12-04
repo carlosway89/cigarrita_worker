@@ -1,5 +1,5 @@
 define([
-    'text!/prueba_yii/templates/welcome.php'
+    'text!/templates/welcome.php'
 ],
     function(tmpl) {
         return Backbone.View.extend({

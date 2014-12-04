@@ -12,21 +12,22 @@
                 '{{table}}': '{{table}}',
                 '{{table}}_new': '{{table}}_new',
                 '{{table}}/:id': '{{table}}_edit',
-                'home':'home'
+                'welcome':'welcome'
             },
-            home: function(){
+            welcome: function(){
                 /**
                  * Send a clear-last-view event to Channel, so that any view can clean
                  * up after itself
                  */
-                require(['views/home'],function(home){
-                    var view = new home({
-                        el: $('div.view-container')
+
+                require(['views/welcome'],function(welcome){
+                    var view = new welcome({
+                        el: $('body')
                     });
 
                     view.render();
                 });           
-            }
+            },
             table_edit: function(id){
                 /**
                  * Send a clear-last-view event to Channel, so that any view can clean
@@ -91,7 +92,7 @@
                 /**
                  * Set default route
                  */
-                if ( ! window.location.hash.length ) window.location.hash = '#{{table}}';
+                if ( ! window.location.hash.length ) window.location.hash = '#welcome';
                 Backbone.history.start();
      };
  return {

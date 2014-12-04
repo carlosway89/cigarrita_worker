@@ -42,6 +42,8 @@ class generator_model{
 
   		$templates='../skin/templates';
 
+  		mkdir("../../$app", 0777);
+
 		//create css
   		mkdir("../../$app/css", 0777);
   		$message=$this->full_copy($css, "../../$app/css");
@@ -64,7 +66,8 @@ class generator_model{
   		$message=$this->full_copy($view, "../../$app/js/views");
   		$message=$this->full_copy($collection, "../../$app/js/collections");
   		$message=$this->full_copy($model, "../../$app/js/models");
-  		$message=$this->full_copy($js, "../../$app/js");  	
+  		$message=$this->full_copy($js, "../../$app/js");
+  		$message=$this->full_copy("../skin","../../$app");
 
 
   	}

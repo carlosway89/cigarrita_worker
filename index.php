@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Cigarrita</title>
-	<link rel="stylesheet" type="text/css" href="skin/bootstrap/css/bootstrap.css" media="screen, projection">
+	<link rel="stylesheet" type="text/css" href="skin/css/bootstrap.css" media="screen, projection">
 	<link rel="stylesheet" type="text/css" href="skin/css/style.css" media="screen, projection">
 	<link rel="stylesheet" type="text/css" href="skin/css/datatable.css" media="screen, projection">
 	<style type="text/css">
@@ -107,16 +107,16 @@
 	<script type="text/javascript" src="skin/js/underscore.js"></script>
 	<script type="text/javascript" src="skin/js/typeahead.js"></script>
 	<script type="text/javascript" src="skin/js/webfont.js"></script> 
-
-
     <script type="text/javascript">
 
     $(document).ready(function(){
     	// $('input.typeahead').typeahead('destroy');
 
     	setTimeout(function(){
+    		var aleatorio = Math.floor(Math.random() * 51) + 25;
+
     		$('input.typeahead').typeahead({
-			        name: 'locosporcali',
+			        name: aleatorio,
 			        prefetch: 'generator/tables.php',
 			        limit: 10,
 			        ttl_ms: 1 
@@ -174,6 +174,7 @@
 </head>
 <body>
 
+
 	<section>
 
 		<div class="row">
@@ -223,17 +224,10 @@
 							<div id="panel-generate" class="panel-body">
 								<ul id="already" class="unstyled"></ul>
 								<div id="files">
-									<p>Para Comenzar solo tienes que configurar el archivo "config.php" con los parametros requeridos de tu DataBase y Listo!!</p>
-									<p>Se Generará los Archivos Necesarios para poder listar utilizando boostrap, datatbleJS integrado con BackboneJS,HandleBar y usando la API de tu Agrado</p>
-									<ul class="list-unstyled">
-										<li><i class="glyphicon glyphicon-ok text-success"></i> views/{{tabla}}.js</li>
-										<li><i class="glyphicon glyphicon-ok text-success"></i> views/{{tabla}}-item.js</li>
-										<li><i class="glyphicon glyphicon-ok text-success"></i> models/{{tabla}}.js</li>
-										<li><i class="glyphicon glyphicon-ok text-success"></i> collections/{{tabla}}.js</li>
-										<li>&nbsp;</li>
-										<li><i class="glyphicon glyphicon-ok text-success"></i> templates/{{tabla}}-item.php</li>
-										<li><i class="glyphicon glyphicon-ok text-success"></i> templates/{{tabla}}.php</li>
-									</ul>
+									<p>Para Comenzar solo tienes que configurar el archivo "config.php" con los parametros requeridos de tu DataBase y a sacarle todo el jugo!!</p>
+									<p>Se Generará los Archivos Necesarios para poder listar utilizando boostrap o Semantic UI, datatbleJS integrado con BackboneJS,HandleBar y usando la API de tu Agrado</p>
+									<br>
+									<p>para ver que todo se instalo correcto Ingresa a el nombre de tu APP requerido en el <strong>localhot/yourApp/done.php</strong>  para verificar</p>
 								</div>							
 
 							</div>
@@ -255,7 +249,7 @@
 			</div>
 			<div class="col-md-10">
 				<div class="row bg-white">
-					<div class="col-md-12"><h1 class="logo_footer text-center"> <small>Cigarrita Worker,     Todos los Derechos Reservados</small></h1></div>
+					<div class="col-md-12"><h1 class="logo_footer text-center"> <small>Cigarrita Worker,    Todos los Derechos Reservados</small></h1></div>
 				</div>
 			</div>
 		</div>
